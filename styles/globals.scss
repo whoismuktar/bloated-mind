@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.borderTest {
+  border: 1px solid;
+}
+
+.gradientBG {
+  // background: linear-gradient(-45deg, #1dadec, #7aa3e6, #354d96, #23d5ab);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #1dadec, #354d96);
+
+	/*.color-change-5x{-webkit-animation:color-change-5x 10s ease-in-out infinite alternate-reverse both;animation:color-change-5x 10s ease-in-out infinite alternate-reverse both}*/
+	background-size: 400% 400%;
+
+  &.__fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  &.animated {
+    animation: gradientBG 15s ease infinite;
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      // 50% {
+      //   background-position: 100% 50%;
+      // }
+      100% {
+        background-position: 100% 50%;
+        // background-position: 0% 50%;
+      }
+    }
+  }
+}
+
+.darkBG-1 {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+}
+.darkBG {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #483030 0%, #302a2a 74%);
+}
+
+.dots-loading {
+  font-weight: bold;
+  // display:inline-block;
+  // font-family: monospace;
+  font-size: 30px;
+  clip-path: inset(0 3ch 0 0);
+  animation: load 1s steps(4) infinite;
+}
+
+@keyframes load {
+  to {
+    clip-path: inset(0 -1.32ch 0 0)
+  }
+}
+
+.dflex {
+  display: flex;
+}
+
+.allChildrenCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+button {
+  padding: 10px 40px;
+}
