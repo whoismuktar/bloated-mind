@@ -1,0 +1,15 @@
+.nav-wrapper {
+    background-color: red;
+    .nav {
+        position: absolute;
+        width: 100%;
+    }
+
+    ._logo {
+        color: #ffffff;
+        display: flex;
+        font-size: 1.5em;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+}
