@@ -3,9 +3,9 @@ import styles from "./nav.module.scss"
 
 export default function Nav() {
     return (
-        <div className={styles["nav-wrapper"]}>
-            <nav className={styles["nav"]}>
-                <div className="px-4 py-6 sm:px-6 lg:px-8">
+        <div className={`${styles["nav-wrapper"]}`}>
+            <nav className={`${styles["nav"]} container mx-auto`}>
+                <div className="py-6 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className={`${styles["_logo"]} flex-shrink-0`}>
