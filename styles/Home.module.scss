@@ -1,7 +1,25 @@
-.container {
-  // padding: 0 2rem;
+.app-home {
+  min-height: 100vh;
+  color: #a78f8f;
 }
 
+.intro {
+  &-section-left {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  &-section-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  &-featured-img {
+    border-top-left-radius: 10rem;
+    overflow: hidden;
+  }
+}
 .main {
   // min-height: 100vh;
   // padding: 4rem 0;
@@ -16,9 +34,11 @@
   display: flex;
   flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  // position: absolute;
+  // bottom: 0;
+  width: 100%;
 }
 
 .footer a {
