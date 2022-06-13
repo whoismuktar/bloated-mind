@@ -1,22 +1,25 @@
 .hero {
     &-section {
         background-color: #1a161f;
-        min-height: 70vh;
+        min-height: 90vh;
         color: #ffffff;
     }
-
+    &-leftside {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // padding: 19%;
+    }
+    &-text {
+        width: 60%;
+    }
     &-polka {
         position: absolute;
         left: 33px;
         top: 43px;
         z-index: 0;
-    }
-    &-leftside {
-        width: 85%;
-    }
-    &-leftside {
-        position: relative;
-        padding: 19%;
     }
     &-title {
         position: relative;
