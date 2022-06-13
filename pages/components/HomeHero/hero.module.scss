@@ -1,0 +1,56 @@
+.hero {
+    &-section {
+        background-color: #1a161f;
+        min-height: 70vh;
+        color: #ffffff;
+    }
+
+    &-polka {
+        position: absolute;
+        left: 33px;
+        top: 43px;
+        z-index: 0;
+    }
+    &-leftside {
+        width: 85%;
+    }
+    &-leftside {
+        position: relative;
+        padding: 19%;
+    }
+    &-title {
+        position: relative;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1;
+        z-index: 1;
+        letter-spacing: 2px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -40px;
+            width: 40%;
+            height: 100%;
+            background-image: url("../../../public/polka-square.svg");
+            background-repeat: no-repeat;
+            background-size: 200%;
+            z-index: -1;
+        }
+    }
+    &-subtitle {
+        color: #7c7676;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+    &-cta {
+        margin-top: 20%;
+    }
+    &-rightside {
+        background-image: url("../../../public/heroimg.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}
