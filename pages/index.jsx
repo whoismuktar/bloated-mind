@@ -18,7 +18,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <HomeHero />
-        <div className="container mx-auto grid grid-cols-2 gap-4 gap-8 px-4 pt-10">
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 gap-8 px-4 pt-10">
         <div className={styles["intro-section-left"]}>
             <div className={`${styles["intro-featured-img"]} inline-block`}>
               <Image src="/model1.jpeg" width={400} height={500} alt="model" />
@@ -32,7 +32,7 @@ export default function Home() {
             </div>
 
             <div className="cta">
-              <button className='border mt-10 hover:text-white'>Join A Room</button>
+              <button className='border mt-10 w-full lg:w-1/3 hover:text-white'>Join A Room</button>
               {/* <Image src="/circle.jpeg" width={50} height={50} alt="circle" /> */}
             {/* <Image src="/circle.svg" alt="Vercel Logo" width={72} height={16} /> */}
             </div>
