@@ -1,0 +1,13 @@
+$primary-color: #1a161f;
+$secondary-color: #ffa500;
+$grey1-color: #bdc3c9;
+$grey2-color: #a78f8f;
+$grey3-color: #7c7676;
+
+:export {
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
+  grey1Color: $grey1-color;
+  grey2Color: $grey2-color;
+  grey3Color: $grey3-color;
+}
