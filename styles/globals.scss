@@ -146,6 +146,9 @@ input[type=text] {
 }
 
 button {
+  &.btn-padd {
+    padding: 10px 40px;
+  }
   &.cta-btn {
     padding: 10px 40px;
     border-radius: 6px;
