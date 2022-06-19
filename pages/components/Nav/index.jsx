@@ -1,7 +1,11 @@
 // import Image from 'next/image'
+import { useRouter } from "next/router"
 import styles from "./nav.module.scss"
+import Logo from "./Logo"
 
 export default function Nav() {
+    const router = useRouter();
+
     return (
         <div className={`${styles["nav-wrapper"]}`}>
             <nav className={`${styles["nav"]} container px-4 mx-auto`}>
@@ -9,7 +13,7 @@ export default function Nav() {
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className={`${styles["_logo"]} flex-shrink-0`}>
-                                <h1>Giraffe</h1> 🦒
+                                <Logo />
                             </div>
                             <div className="hidden md:block">
                                 <div className="ml-10 flex items-baseline space-x-4">
@@ -27,7 +31,7 @@ export default function Nav() {
                                 {/* Profile dropdown */}
                                 <div className="ml-3 relative">
                                     <div>
-                                        <button className="text-white py-1 px-9 border border-orange rounded-full">
+                                        <button onClick={()=> router.push("/auth")} className="text-white py-1 px-9 border border-orange rounded-full">
                                             Login
                                         </button>
                                     </div>
