@@ -1,0 +1,80 @@
+.carousels {
+    height: 100%;
+    overflow: hidden;
+
+    .carousel {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: 0.3s;
+    }
+    .carousel-active {
+        display: block;
+    }
+    .carousel-not-active {
+        display: none;
+        // height: 0px !important;
+        // width: 0px !important;
+    }
+    .overlayText {
+        display: block;
+        color: #ffffff;
+        font-size: 2em;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        height: 50%;
+        width: 100%;
+    }
+    .caption {
+        color: #ffffff;
+        font-size: 1em;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+    }
+    .slide {
+        background-size: cover;
+        height: 100%;
+        position: relative;
+
+        &:after {
+            content: "";
+            width: 100%;
+            background: #0000001c;
+            height: 100%;
+            position: absolute;
+        }
+    }
+    .arrows {
+        position: absolute;
+        display: flex;
+        bottom: 0;
+        width: 100%;
+        justify-content: flex-end;
+        font-size: 40px;
+
+        .left-arrow {
+            transition: 0.3s;
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            button {
+                padding: 5px 10px;
+            }
+        }
+        .right-arrow {
+            transition: 0.3s;
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            button {
+                padding: 5px 10px;
+            }
+        }
+    }
+}
