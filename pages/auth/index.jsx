@@ -57,6 +57,7 @@ export default function Auth() {
                         showCaption={true}
                         showArrows={true}
                         cycle={true}
+                        autoRotate={true}
                     />
                 </div>
                 <div className={`${styles["auth-card"]} allChildrenCenter w-2/6`}>
