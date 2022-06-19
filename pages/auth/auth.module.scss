@@ -1,0 +1,76 @@
+.auth {
+    background-color: $primary-color;
+
+    &-wrapper {
+        display: flex;
+        height: 100vh;
+        // padding: 50px;
+        overflow: hidden;
+        background-color: #eaeaea;
+        background-color: $primary-color;
+        color: #ffffff;
+    }
+
+    &-card {
+        padding: 50px;
+    }
+}
+
+.register {
+    input {
+        width: 100%;
+        padding: 20px 10px;
+        outline: 0;
+        background-color: transparent;
+    }
+
+    :global(.cta-btn) {
+        margin-top: 35px;
+        width: 100%;
+    }
+
+    :global(.google-cta) {
+        padding: 10px 40px;
+        margin-top: 15px;
+        width: 100%;
+        border: 1px solid $grey1-color;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-weight: 700;
+    }
+
+    :global(.google-icon) {
+        margin-right: 5px;
+    }
+
+    :global(.switch-auth) {
+        margin-right: 5px;
+    }
+
+    .switch-auth {
+        margin-top: 15px;
+        color: $grey3-color;
+        text-align: center;
+
+        button {
+            margin-left: 5px;
+            color: #ffffff;
+
+            &::after {
+                content: '';
+                width: 0px;
+                height: 2px;
+                display: block;
+                background: #ffffff;
+                transition: 300ms;
+            }
+
+            &:hover::after {
+                width: 100%;
+            }
+        }
+    }
+}
