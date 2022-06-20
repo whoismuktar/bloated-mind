@@ -1,3 +1,4 @@
+import UserAvi from "../userAvi"
 import styles from "./user-chat-card.module.scss"
 
 export default function UserChatCard() {
@@ -6,6 +7,7 @@ export default function UserChatCard() {
   return (
     <div className={styles.userchatcard}>
         <div className={`${styles["user-avatar"]}`}>
+            <UserAvi />
         </div>
         <div className={`${styles["user-username"]} app-title-3`}>
             Username
