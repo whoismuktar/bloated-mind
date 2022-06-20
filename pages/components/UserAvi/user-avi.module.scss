@@ -1,0 +1,17 @@
+.avatar-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    .user-avatar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        width: max-content;
+        height: max-content;
+        border-radius: 100%;
+        border: 1px solid;
+        margin: 0 auto;
+    }
+}
