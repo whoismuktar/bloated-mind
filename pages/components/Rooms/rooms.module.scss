@@ -1,0 +1,44 @@
+.rooms {
+    display: block;
+    padding-top: 30px;
+
+    &-wrapper {
+        min-height: 70vh;
+        display: flex;
+        justify-content: space-between;
+        // display: grid;
+        // grid-template-columns: 3fr 2fr;
+        // justify-content: center;
+        // // grid-auto-rows: 50px;
+        // grid-gap: 50px;
+    }
+}
+
+.room {
+    &-card {
+        border-radius: 50px;
+        transition: ease-in-out .2s;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            transform: scale(1.01);
+        }
+
+        &-left {
+            width: 53%;
+        }
+        &-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 43%;
+
+            .room-card {
+                height: 45%;
+            }
+        }
+    }
+}
