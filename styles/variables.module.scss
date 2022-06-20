@@ -3,6 +3,8 @@ $secondary-color: #ffa500;
 $grey1-color: #bdc3c9;
 $grey2-color: #a78f8f;
 $grey3-color: #7c7676;
+$chat-color1: #5c5081;
+$chat-color2: #4e436d;
 
 :export {
   primaryColor: $primary-color;
@@ -10,4 +12,6 @@ $grey3-color: #7c7676;
   grey1Color: $grey1-color;
   grey2Color: $grey2-color;
   grey3Color: $grey3-color;
+  chatColor1: $chat-color1;
+  chatColor2: $chat-color2;
 }
