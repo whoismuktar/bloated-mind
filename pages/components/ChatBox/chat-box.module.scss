@@ -3,5 +3,86 @@
     background-color: $chat-color2;
     border-radius: 25px;
     padding: 40px;
-    min-height: 70vh;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+
+    .conversations {
+        flex: 1;
+        overflow-y: auto;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+
+        &::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+
+        .message-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+    
+            .user-avatar {
+                display: inline-block;
+                margin-right: 20px;
+            }
+            .message {
+                background-color: $chat-color1;
+                padding: 15px 30px;
+                border-radius: 10px;
+                font-weight: 300;
+                font-size: 13px;
+            }
+        }
+    
+        .otherAuthor {
+            display: block;
+        }
+        .myOwnAuthor {
+            .message-wrapper {
+                justify-content: flex-end;
+                .message {
+                    background-color: $chat-color3;
+                    color: #000000;
+                }
+            }
+        }
+    }
+
+    .message-input {
+        display: flex;
+        border-radius: 100px;
+        background: #eaeaea;
+        color: #000000;
+        align-items: center;
+        padding: 0 10px;
+        margin-top: 6px;
+        position: relative;
+
+        .emoji-wrapper {
+            padding: 15px;
+            cursor: pointer;
+        }
+        textarea {
+            width: 100%;
+            background: transparent;
+            padding: 10px;
+            border-radius: 10px;
+            outline: 0;
+            height: 50px;
+            resize: none;
+            // background-color: red;
+
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none; /* Firefox */
+
+            &::-webkit-scrollbar { 
+                display: none;  /* Safari and Chrome */
+            }
+        }
+        #sendMessage {
+            padding: 15px;
+            font-size: 22px;
+        }
+    }
 }
