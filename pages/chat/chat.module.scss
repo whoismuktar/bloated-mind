@@ -1,0 +1,13 @@
+.chat-pg {
+    .chat-wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        .usercard-wrapper {
+            width: 25%;
+        }
+        .chatbox-wrapper {
+            width: 70%;
+        }
+    }
+}
