@@ -52,6 +52,11 @@ a {
   font-weight: 700;
   line-height: 1.2;
 }
+.app-title-3 {
+  font-size: 1.5em;
+  font-weight: 500;
+  line-height: 1.2;
+}
 .app-subtitle-1 {
   font-size: 15px;
   color: $grey3-color;
@@ -159,4 +164,47 @@ button {
 
 .bg-prop {
   &-bottom-right {} 
+}
+
+.app-wrapper {
+  background-color: $primary-color;
+  color: #ffffff;
+  
+  .main-body {
+    min-height: 90vh;
+    padding-top: 100px;
+
+    &.no-nav,
+    &.no-top-space {
+      padding-top: 0;
+    }
+  }
+}
+
+.footer {
+  background-color: $primary-color;
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  justify-content: center;
+  align-items: center;
+  // position: absolute;
+  // bottom: 0;
+  width: 100%;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+}
+
+.page-header {
+  .title {
+    @extend .app-title-2
+  }
+  .subtitle {
+    @extend .app-subtitle-1
+  }
 }
