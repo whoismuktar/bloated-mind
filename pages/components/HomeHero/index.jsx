@@ -1,7 +1,10 @@
 import Image from "next/image"
 import styles from "./hero.module.scss"
+import { useRouter } from "next/router"
 
 export default function HomeHero() {
+    const router = useRouter()
+
   return (
     <div className={`${styles["hero-section"]} grid gap-2 pt-10 lg:pt-0 lg:grid-cols-2 sm:grid-cols-1`}>
         <div className={`${styles["hero-leftside"]}`}>
@@ -20,7 +23,12 @@ export default function HomeHero() {
                     </div>
 
                     <div className="w-full lg:w-min text-center mt-4 lg:mt-0">
-                        <button className="w-full bg-orange h-12 text-black rounded sm:w-1/2 lg:w-48">One Off</button>
+                        <button
+                            className="w-full bg-orange h-12 text-black rounded sm:w-1/2 lg:w-48"
+                            onClick={()=> router.push("/connect")}
+                        >
+                            One Off
+                        </button>
                         {/* <div className="caption-tiny mx-auto w-1/2 text-center">Continue conversation with your anonymous friend</div> */}
                     </div>
                 </div>
