@@ -6,9 +6,13 @@ import styles from "./auth.module.scss"
 import { useState, useEffect } from "react";
 import Logo from "../components/Nav/Logo";
 
-export default function Auth() {
+export default function Auth({setPageConfig}) {
+    const pageConfig = {
+        noFooter: true,
+        noNav: true
+    }
     const [signUpMode, setSignUpMode] = useState(true)
-    const [currentSlide, setCurrentSlide] = useState(0)
+    const [config, setConfig] = useState(pageConfig)
     const slides = [
         {
             image: "/t-model1.jpeg",
@@ -46,6 +50,10 @@ export default function Auth() {
             author: "Fadekemi Orishade"
         },
     ]
+
+    useEffect(() => {
+        setPageConfig(config)
+    }, [config, setPageConfig])
 
     return (
         <div className={`${styles.auth}`}>
