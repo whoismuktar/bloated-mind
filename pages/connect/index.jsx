@@ -33,7 +33,7 @@ export default function Connect() {
             if (message === "Connection Confirmed!") {
                 const css = 'color: green; font-weight: bold; padding: 2px;'
                 console.log(`%c${message}! `, css);
-                // setConnected(true)
+                setConnected(true)
             }
         })
 
