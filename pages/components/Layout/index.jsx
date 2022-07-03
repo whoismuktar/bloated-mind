@@ -2,7 +2,7 @@ import Footer from "../Footer"
 import Nav from "../Nav"
 
 export default function index({ pageConfig, children }) {
-    console.log({ pageConfig, children });
+    // console.log({ pageConfig, children });
     const { noFooter, noNav, noTopSpace } = pageConfig
 
     return (
