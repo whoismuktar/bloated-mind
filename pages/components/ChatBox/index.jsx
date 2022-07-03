@@ -1,7 +1,7 @@
 import UserAvi from "../userAvi"
 import EmojiPicker from "../EmojiPicker"
 import styles from "./chat-box.module.scss"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { isMobile } from "../../../app.config"
 import { BsEmojiSmile } from "react-icons/bs"
 import { FaTelegramPlane } from "react-icons/fa"
@@ -34,6 +34,9 @@ export default function ChatBox() {
     const [showEmoji, setShowEmoji] = useState(false)
     const [conversation, setConversation] = useState(dummyConversations)
     const [onMobile, setOnMobile] = useState("")
+    const convRef = useRef(null)
+    const lastMsgRef = useRef(null)
+    const msgEnd = useRef(null)
 
     const toggleEmoji = () => {
         setShowEmoji(!showEmoji)
@@ -43,33 +46,43 @@ export default function ChatBox() {
         setMessage(`${message} ${emoji}`)
     }
 
-    const submitMessage = (e) => {
-        if (!message.trim()) return
-
-        if (e.key && e.key !== "Enter") {
-            return
+    const submitWithEnter = (e) => {        
+        if (e.key && (e.key === "Enter" && e.shiftKey)) {
+            return setMessage(`${message}\n`)
+        } else if (e.key && e.key === "Enter") {
+            e.preventDefault()
+            submitMessage()
         }
+    }
+    const submitMessage = () => {
+        if (!message.trim()) return
 
         const collateMessage = {
             message: message.trim(),
             time: Date.now(),
             author: 1,
         }
-        const appendconversation = [...conversation, collateMessage]
-        setConversation(appendconversation)
+        const newconversation = [...conversation, collateMessage]
+        setConversation(newconversation)
         setMessage("")
     }
+
+    const scrollToBottom = () => {
+        msgEnd.current.scrollIntoView({ behavior: "smooth" });
+      }
 
     useEffect(()=> {
         if(isMobile) {
             setOnMobile("on-Mobile")
         }
-    }, [])
 
-    console.log({onMobile})
+        scrollToBottom()
+    })
+    // BUG
+    // mobile bug when dependency [conversation] is added
 
     return (
-        <div className={`${styles.chatbox} ${styles[onMobile]}`}>
+        <div className={`${styles.chatbox} ${styles[onMobile]}`} ref={convRef}>
             {
                 onMobile && <div className={styles["conv-user-card"]}>
                     <div className={`${styles["user-avatar"]}`}>
@@ -87,11 +100,12 @@ export default function ChatBox() {
                 </div>
             }
             <div className={`${styles.conversations}`}>
+                <h1 className="mb-10">{onMobile}</h1>
                 {
                     conversation.map((conv, i) => {
                         return (
                             <div key={i} className={`${conv.author === currentUser ? styles.myOwnAuthor : styles.otherAuthor}`}>
-                                <div className={styles["message-wrapper"]}>
+                                <div className={styles["message-wrapper"]} ref={i == conversation.length-1 ? lastMsgRef : ref => conv[i] = ref}>
                                     {
                                         conv.author != currentUser && <div className={styles["user-avatar"]}>
                                             <UserAvi aviWidth="30" aviHeight="30" />
@@ -104,6 +118,8 @@ export default function ChatBox() {
                         )
                     })
                 }
+                <div ref={msgEnd} id="msgEnd"></div>
+
                 {/* <div className={styles.sender}>
                     <div className={styles["message-wrapper"]}>
                         <div className={styles["user-avatar"]}>
@@ -135,7 +151,7 @@ export default function ChatBox() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     autoComplete="off"
-                    onKeyDown={submitMessage}
+                    onKeyDown={submitWithEnter}
                 ></textarea>
                 <button id={styles.sendMessage} onClick={submitMessage}>
                     <FaTelegramPlane />
