@@ -7,6 +7,51 @@
     display: flex;
     flex-direction: column;
 
+    &.on-Mobile {
+        height: 100%;
+        border-radius: 0;
+        padding: 0;
+
+        .conversations {
+            padding: 17px 20px;
+        }
+        .message-input {
+            margin: 10px;
+        }
+        
+    }
+
+    .conv-user-card {
+        background: $chat-color1;
+        width: 100%;
+        padding: 10px 20px;
+        display: flex;
+        
+        .user-avatar {
+            display: inline-flex;
+            margin-right: 10px;
+
+        }
+        .user-meta {
+            .user-name {
+                font-weight: 600;
+            }
+            .user-status {
+                .status {
+                    &-online {
+                        color: #b8d5b8;
+                    }
+                    &-away {
+                        color: #d3b71d;
+                    }
+                    &-offline {
+                        color: #9c7a7a;
+                    }
+                }
+            }
+        }
+    }
+
     .conversations {
         flex: 1;
         overflow-y: auto;
@@ -24,7 +69,7 @@
     
             .user-avatar {
                 display: inline-block;
-                margin-right: 20px;
+                margin-right: 10px;
             }
             .message {
                 background-color: $chat-color1;
@@ -85,4 +130,11 @@
             font-size: 22px;
         }
     }
+}
+
+
+
+.chatbox.onMobile {
+    height: 100%;
+    border-radius: 0;
 }

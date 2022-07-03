@@ -10,4 +10,16 @@
             width: 70%;
         }
     }
+
+    &.on-Mobile {
+        .chat-wrapper {
+            .chatbox-wrapper {
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
+        }
+    }
 }
