@@ -74,7 +74,7 @@ export default function ChatBox() {
         }
     }
     const submitMessage = () => {
-        console.log(123);
+        console.log("=============");
         if (!message.trim()) return
 
         const collateMessage = {
@@ -82,13 +82,8 @@ export default function ChatBox() {
             time: Date.now(),
             author: 1,
         }
-        const newconversation = [...conversation, collateMessage]
-        setConversation(newconversation)
 
-        socket.emit("chat", `${message} ${new Date(Date.now())}`)
-
-        setMessage("")        
-        messageInput.current.focus()
+        socket.emit("chat", collateMessage)
     }
 
     const scrollToBottom = () => {
@@ -115,8 +110,6 @@ export default function ChatBox() {
         ioSocket.on("connect", (connect) => {
             ioSocket.send("User Connected!")
             setSocket(ioSocket)
-
-            console.log({socket});
         })
 
         ioSocket.on('error', (error) => {
@@ -155,7 +148,17 @@ export default function ChatBox() {
 
         // Receive Custom Message from IO Server
         ioSocket.on("chat", (chat) => {
-            console.log("Socket Chat~~:", { chat });            
+            console.log("Socket Chat~~:", { chat });
+
+            console.log("old", {conversation});
+
+            const newconversation = [...conversation, chat]
+            setConversation(newconversation)
+
+            console.log("new", {newconversation});
+
+            setMessage("")        
+            messageInput.current.focus()
         })
 
         console.log({isConnected});
@@ -169,7 +172,7 @@ export default function ChatBox() {
 
             console.log("unmount");
         }
-    }, [])
+    }, [conversation])
     // BUG
     // mobile bug when dependency [conversation] is added
 
