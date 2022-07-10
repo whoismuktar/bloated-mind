@@ -1,5 +1,6 @@
 import UserAvi from "../userAvi"
 import EmojiPicker from "../EmojiPicker"
+import io from "socket.io-client"
 import styles from "./chat-box.module.scss"
 import { useState, useEffect, useRef } from "react"
 import { isMobile } from "../../../app.config"
@@ -36,7 +37,23 @@ export default function ChatBox() {
     const [onMobile, setOnMobile] = useState("")
     const convRef = useRef(null)
     const lastMsgRef = useRef(null)
+    const messageInput = useRef(null)
     const msgEnd = useRef(null)
+    const [socket, setSocket] = useState(null)
+    const [isConnected, setIsConnected] = useState(false)
+
+    const getFormatedDate = (date) => {
+        const d = new Date(date)
+        const isValid = !isNaN(d)
+        
+        if (isValid) {
+            const hour = d.getHours()
+            const minute = d.getMinutes()
+            return `${hour}:${minute}`
+        } else {
+            return date
+        }
+    }
 
     const toggleEmoji = () => {
         setShowEmoji(!showEmoji)
@@ -52,9 +69,12 @@ export default function ChatBox() {
         } else if (e.key && e.key === "Enter") {
             e.preventDefault()
             submitMessage()
+        } else {
+            return
         }
     }
     const submitMessage = () => {
+        console.log(123);
         if (!message.trim()) return
 
         const collateMessage = {
@@ -64,20 +84,92 @@ export default function ChatBox() {
         }
         const newconversation = [...conversation, collateMessage]
         setConversation(newconversation)
-        setMessage("")
+
+        socket.emit("chat", `${message} ${new Date(Date.now())}`)
+
+        setMessage("")        
+        messageInput.current.focus()
     }
 
     const scrollToBottom = () => {
         msgEnd.current.scrollIntoView({ behavior: "smooth" });
-      }
+    }
 
     useEffect(()=> {
-        if(isMobile) {
+        if (isMobile) {
             setOnMobile("on-Mobile")
         }
 
         scrollToBottom()
-    })
+        messageInput.current.focus()
+
+        const ioSocket = io.connect('http://localhost:8000', {
+            'reconnection': true,
+            'reconnectionDelay': 1000,
+            'reconnectionAttempts': 2
+          });
+        // ("http://127.0.0.1:8000");
+        console.log("useEffect ran");
+
+        // Connect to IO Server on app init
+        ioSocket.on("connect", (connect) => {
+            ioSocket.send("User Connected!")
+            setSocket(ioSocket)
+
+            console.log({socket});
+        })
+
+        ioSocket.on('error', (error) => {
+            console.log("error occurred", error);
+            ioSocket.disconnect()
+        });
+
+        ioSocket.on('reconnect_error', (error) => {
+            console.log("reconnect_error", error);
+            ioSocket.disconnect()
+        });
+
+        ioSocket.on('reconnect_attempt', (attempt) => {
+            if (attempt > 0) {
+                console.log("reconnect_attempt");
+                ioSocket.disconnect()
+            }
+        });
+
+        ioSocket.on('disconnect', () => {
+            setIsConnected(false);
+            console.log("IO Socket DISCONNECTED!!!")
+        });
+
+        // Receive Message from IO Server
+        ioSocket.on("message", (message) => {
+            console.log("Socket message:", { message });
+            if (message === "Connection Confirmed!") {
+                const css = 'color: green; font-weight: bold; padding: 2px;'
+                console.log(`%c${message}! `, css);
+                setIsConnected(true)
+            } else {
+                console.log("Front End Received:", message);
+            }
+        })
+
+        // Receive Custom Message from IO Server
+        ioSocket.on("chat", (chat) => {
+            console.log("Socket Chat~~:", { chat });            
+        })
+
+        console.log({isConnected});
+
+        // On unMount
+        return ()=> {
+            ioSocket.off('connect');
+            ioSocket.off('disconnect');
+            ioSocket.off('message');
+            ioSocket.off('chat');
+
+            console.log("unmount");
+        }
+    }, [])
     // BUG
     // mobile bug when dependency [conversation] is added
 
@@ -112,7 +204,13 @@ export default function ChatBox() {
                                         </div>
                                     }
 
-                                    <div className={styles.message}>{conv.message}</div>
+                                    <div className={styles.message}>
+                                        <span>{conv.message}</span>
+                                        <span className={styles.time}>
+                                            {/* {isNaN(getFormatedDate(conv.time))} */}
+                                            {getFormatedDate(conv.time)}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -148,6 +246,7 @@ export default function ChatBox() {
                     type="text"
                     name="messageInput"
                     id="messageInput"
+                    ref={messageInput}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     autoComplete="off"

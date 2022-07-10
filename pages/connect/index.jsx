@@ -10,15 +10,16 @@ export default function Connect() {
     const [connected, setConnected] = useState(false)
 
     // useEffect(() => {
-    //     const newSocket = io(`http://localhost:5000`);
+    //     const newSocket = io(`http://127.0.0.1:8000`);
     //     setSocket(newSocket);
     //     console.log(newSocket);
     //     return () => newSocket.close();
     //   }, [setSocket]);
 
     useEffect(() => {
-        const ioSocket = io.connect("http://localhost:5000");
+        const ioSocket = io.connect("http://127.0.0.1:8000");
 
+        // Connect to IO Server on app init
         ioSocket.on("connect", (connect) => {
             console.log("Init Connection", { connect }, { ioSocket });
             // ioSocket.emit("commando", "Coo Mode")
@@ -37,8 +38,8 @@ export default function Connect() {
             }
         })
 
-        // ioSocket.on("commando", (commando) => {
-        //     console.log("Socket Commando!", { commando }, ioSocket);
+        // ioSocket.on("chat", (chat) => {
+        //     console.log("Socket Chat!", { chat });
         // })
 
 
@@ -56,7 +57,12 @@ export default function Connect() {
         //     setConnected(true)
         // })
 
-        if (ioSocket) return () => ioSocket.disconnect();
+        
+        return ()=> {
+            if (ioSocket) {
+                return ioSocket.close()
+            }
+        }
     }, [setSocket]);
 
     return (
