@@ -31,9 +31,9 @@ export default function ChatBox() {
         },
     ]
     const [message, setMessage] = useState("")
-    const [currentUser, setCurrentUser] = useState(1)
+    const [currentUser, setCurrentUser] = useState(Math.floor(Math.random() * 10))
     const [showEmoji, setShowEmoji] = useState(false)
-    const [conversation, setConversation] = useState(dummyConversations)
+    const [conversation, setConversation] = useState([])
     const [onMobile, setOnMobile] = useState("")
     const convRef = useRef(null)
     const lastMsgRef = useRef(null)
@@ -80,7 +80,7 @@ export default function ChatBox() {
         const collateMessage = {
             message: message.trim(),
             time: Date.now(),
-            author: 1,
+            author: currentUser,
         }
 
         socket.emit("chat", collateMessage)
