@@ -9,7 +9,7 @@ function EmojiPicker(props = {}) {
     import('emoji-mart').then((EmojiMart) => {
       new EmojiMart.Picker({ ...props, data, ref })
     })
-  }, [])
+  }, [props])
 
   return<div className="emoji-pack" onSelect={addEmoji} title="Holla" ref={ref}></div>
 }
