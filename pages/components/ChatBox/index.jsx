@@ -168,8 +168,6 @@ export default function ChatBox() {
             messageInput.current.focus()
         })
 
-        console.log({isConnected});
-
         // On unMount
         return ()=> {
             ioSocket.off('connect');
@@ -179,7 +177,7 @@ export default function ChatBox() {
 
             console.log("unmount");
         }
-    }, [conversation])
+    }, [conversation, isProd])
     // BUG
     // mobile bug when dependency [conversation] is added
 
