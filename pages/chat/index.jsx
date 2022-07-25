@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import UserChatCard from "../components/UserChatCard"
-import ChatBox from "../components/ChatBox"
+import UserChatCard from "../../components/UserChatCard"
+import ChatBox from "../../components/ChatBox"
 import styles from "./chat.module.scss"
 import { isMobile } from "../../app.config"
 

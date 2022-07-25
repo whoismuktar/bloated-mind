@@ -3,7 +3,7 @@ import EmojiPicker from "../EmojiPicker"
 import io from "socket.io-client"
 import styles from "./chat-box.module.scss"
 import { useState, useEffect, useRef } from "react"
-import { isMobile } from "../../../app.config"
+import { isMobile } from "../../app.config"
 import { BsEmojiSmile } from "react-icons/bs"
 import { FaTelegramPlane } from "react-icons/fa"
 

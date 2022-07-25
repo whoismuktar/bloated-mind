@@ -1,10 +1,10 @@
 import Login from "./Login"
 import Register from "./Register"
-import Carousel from "../components/Carousel";
+import Carousel from "../../components/Carousel";
 // import styles from "../../styles/Auth.module.scss"
 import styles from "./auth.module.scss"
 import { useState, useEffect } from "react";
-import Logo from "../components/Nav/Logo";
+import Logo from "../../components/Nav/Logo";
 
 export default function Auth({setPageConfig}) {
     const pageConfig = {

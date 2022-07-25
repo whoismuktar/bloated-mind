@@ -1,5 +1,5 @@
 import '../styles/globals.scss'
-import Layout from "./components/Layout"
+import Layout from "../components/Layout"
 import { useState } from "react"
 // import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, getDoc } from "firebase/firestore";
@@ -21,7 +21,7 @@ import { getAnalytics } from "firebase/analytics";
 
 
 function MyApp({ Component, pageProps }) {
-  const [pageConfig, setPageConfig] = useState({})
+  const [pageConfig, setPageConfig] = useState({noFooter: false})
 
   return <Layout pageConfig={pageConfig}>
     <Component setPageConfig={setPageConfig} {...pageProps} />

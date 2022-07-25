@@ -1,6 +1,6 @@
 
-import Rooms from "../components/Rooms"
-import WaitingLoader from "../components/WaitingLoader"
+import Rooms from "../../components/Rooms"
+import WaitingLoader from "../../components/WaitingLoader"
 import { useState, useEffect } from "react"
 import io from "socket.io-client"
 

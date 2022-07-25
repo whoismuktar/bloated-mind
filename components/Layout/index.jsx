@@ -1,8 +1,10 @@
 import Footer from "../Footer"
 import Nav from "../Nav"
 
-export default function index({ pageConfig, children }) {
+export default function index(props) {
     // console.log({ pageConfig, children });
+    const pageConfig = props.pageConfig
+    const children = props.children
     const { noFooter = false, noNav = false, noTopSpace = false } = pageConfig
 
     return (
