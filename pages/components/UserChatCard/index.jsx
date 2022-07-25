@@ -1,4 +1,4 @@
-import UserAvi from "../userAvi"
+import UserAvi from "../UserAvi"
 import styles from "./user-chat-card.module.scss"
 
 export default function UserChatCard() {

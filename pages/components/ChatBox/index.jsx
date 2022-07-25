@@ -1,4 +1,4 @@
-import UserAvi from "../userAvi"
+import UserAvi from "../UserAvi"
 import EmojiPicker from "../EmojiPicker"
 import io from "socket.io-client"
 import styles from "./chat-box.module.scss"
