@@ -41,7 +41,7 @@ export default function Carousel(props) {
 
     return (
         <div className={styles.carousels}>
-            {props.items.map((item, i) => {
+            {props.items ? props.items.map((item, i) => {
                 return (
                     <div key={i} className={`${styles.carousel} ${i === currentIdx ? styles["carousel-active"] : styles["carousel-not-active"]}`} style={{ backgroundColor: props.useColor && item.color }}>
                         {
@@ -70,7 +70,7 @@ export default function Carousel(props) {
                         }
                     </div>
                 )
-            })}
+            }) : null}
         </div>
     )
 }
