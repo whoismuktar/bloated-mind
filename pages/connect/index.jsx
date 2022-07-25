@@ -70,7 +70,7 @@ export default function Connect() {
             {
                 !connected ?
                 <div className="app-dialog app-dialog_shallow">
-                    <strong>There's been an error connecting you :{JSON.stringify(connected)}</strong>
+                    <strong>There&quot;s been an error connecting you :{JSON.stringify(connected)}</strong>
                 </div> :
                 <>
                     {!selectedRoom && <Rooms setSelectedRoom={setSelectedRoom} />}
