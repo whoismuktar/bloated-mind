@@ -30,6 +30,7 @@ export default function ChatBox() {
             author: 2
         },
     ]
+    const  isProd = process.env.NODE_ENV === "development" ? false : true
     const [message, setMessage] = useState("")
     const [currentUser, setCurrentUser] = useState(Math.floor(Math.random() * 10))
     const [showEmoji, setShowEmoji] = useState(false)
@@ -98,7 +99,12 @@ export default function ChatBox() {
         scrollToBottom()
         messageInput.current.focus()
 
-        const ioSocket = io.connect('http://localhost:8000', {
+        const remote = "https://giraffe-mind-be.vercel.app"
+        const local = "http://localhost:8000"
+
+        const url = isProd ? remote : local
+
+        const ioSocket = io.connect(url, {
             'reconnection': true,
             'reconnectionDelay': 1000,
             'reconnectionAttempts': 2
@@ -153,6 +159,7 @@ export default function ChatBox() {
             console.log("old", {conversation});
 
             const newconversation = [...conversation, chat]
+            
             setConversation(newconversation)
 
             console.log("new", {newconversation});
